@@ -1,11 +1,12 @@
 // Write your JS here.
-const moles = document.getElementsByClassName("wgs__mole-head");
-
 
 function popUpRandomMole() {
+    let moles = document.querySelectorAll(".wgs__mole-head:not(.wgs__mole-head--whacked)");
 
-    let moleIdx = Math.floor(Math.random() * 8);
-    console.log(moleIdx);
+    if (!moles.length) return alert("You Won!");
+
+
+    let moleIdx = Math.floor(Math.random() * moles.length);
 
     moles[moleIdx].classList.remove("wgs__mole-head--hidden");
 
@@ -27,9 +28,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         popUpRandomMole();
     }, 0)
 
-    moles.forEach(mole => {
-        document.addEventListener("click", (event) => {
-            mole.classList.add("wgs__mole-head--hidden");
+    let moles = document.getElementsByClassName("wgs__mole-head");
+    let molesArr = Array.from(moles);
+    molesArr.forEach(mole => {
+        mole.addEventListener("click", (event) => {
+            mole.classList.add("wgs__mole-head--whacked", "wgs__mole-head--hidden");
+
         })
     });
 });
