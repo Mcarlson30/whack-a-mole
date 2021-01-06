@@ -1,17 +1,8 @@
 // Write your JS here.
-// window.addEventListener('DOMContentLoaded', () => {
+const moles = document.getElementsByClassName("wgs__mole-head");
 
-//     setInterval(() => {
-//         const moleHeads = document.querySelectorAll('.wgs__mole-head');
-//         for (let moleHead of moleHeads) {
-//             moleHead.classList.toggle('wgs__mole-head--hidden');
-//         }
-//     }, 1000);
-
-// });
 
 function popUpRandomMole() {
-    let moles = document.getElementsByClassName("wgs__mole-head");
 
     let moleIdx = Math.floor(Math.random() * 8);
     console.log(moleIdx);
@@ -20,7 +11,7 @@ function popUpRandomMole() {
 
     setTimeout(() => {
         hideMole(moles[moleIdx]);
-    }, 1000)
+    }, 3000)
 }
 
 function hideMole(mole) {
@@ -35,4 +26,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     setTimeout(() => {
         popUpRandomMole();
     }, 0)
+
+    moles.forEach(mole => {
+        document.addEventListener("click", (event) => {
+            mole.classList.add("wgs__mole-head--hidden");
+        })
+    });
 });
